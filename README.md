@@ -11,7 +11,7 @@ SADE is a python voice assistant which is was made to be easy to set up, customi
 On Linux:
 ```
 curl https://ollama.ai/install.sh | sh
-ollama pull orca-mini
+ollama pull orca-mini:3b
 ```
 
 ### Run SADE Voice Assistant
