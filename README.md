@@ -1,4 +1,4 @@
-# SADE
+# SADE Voice Assistant
 
 SADE is a python voice assistant which is was made to be easy to set up and customize.
 
