@@ -30,6 +30,7 @@ def main():
 
 def word_found_fn():
     global word_found
+    config = get_config()
     play_beep()
     recorded_audio_path = new_record_audio()
     play_beep()

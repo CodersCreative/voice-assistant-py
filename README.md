@@ -1,12 +1,14 @@
 # SADE Voice Assistant
 
-SADE is a python voice assistant which is was made to be easy to set up and customize.
+SADE is a python voice assistant which is was made to be easy to set up, customize and learn from.
 
 
-## Usage
+## Installation
 
 ```
-cd path/to/project/assistant
+cd path/to/project/
+pip install -r requirements.txt
+cd assistant
 python3 main.py
 ```
 

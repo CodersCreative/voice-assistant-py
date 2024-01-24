@@ -5,5 +5,4 @@ sounddevice
 soundfile
 torch
 TTS
-audioop
 PyAudio
