@@ -1,7 +1,6 @@
 from sound_effects import play_beep
 import sounddevice as sd
 import soundfile as sf
-import torch
 from TTS.api import TTS
 import sys
 import os

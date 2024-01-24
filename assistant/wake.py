@@ -2,8 +2,6 @@ from voice_record import *
 import re
 from math import *
 import os
-from scipy.io.wavfile import read
-import numpy as np
 from config import get_config
 
 def record_word():

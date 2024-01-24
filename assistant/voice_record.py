@@ -1,20 +1,13 @@
-#import whisper
 from faster_whisper import WhisperModel
 import sounddevice as sd
 import soundfile as sf
 import time
-from pynput import keyboard
 import pyaudio
 import wave
-import speech_recognition as sr
 import os
-from collections import deque
 import math
 import audioop
 from config import get_config
-#import keyboard as key
-
-
 
 global current_model, stopped, stt_ai_model, first_time
 stopped = False
@@ -25,10 +18,12 @@ current_model = WhisperModel(stt_ai_model, device="cpu", compute_type="int8")
 
 
 def get_stt_model():
+    # return the current speech to text Whisper Model
     global current_model
     return current_model
 
 def change_stt_ai_model(new_model):
+    # change and return the current speech to text Whisper Model
     global stt_ai_model, current_model, first_time
     stt_config = get_config()["models"]["stt_models"]
     if stt_ai_model != new_model or first_time:
@@ -111,7 +106,6 @@ def transcribe_audio(recorded_audio_path, ai_model="tiny.en", vad=True):
 
     segments, _ = model.transcribe(audio=audio_path, beam_size=5, vad_filter=vad) #
     segments = list(segments)
-    #print(se)
     transcript = ""
     for segment in segments:
         transcript += segment.text

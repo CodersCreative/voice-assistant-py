@@ -1,0 +1,9 @@
+faster-whisper
+langchain
+langchain_community
+sounddevice
+soundfile
+torch
+TTS
+audioop
+PyAudio

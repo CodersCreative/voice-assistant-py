@@ -4,12 +4,7 @@ from voice_record import transcribe_audio, new_record_audio
 from sound_effects import play_beep
 from config import get_config, load_config
 from wake import check_for_word, record_word
-#from threading import *
-import threading
 import time
-import asyncio
-from concurrent.futures import ThreadPoolExecutor
-from multiprocessing.pool import Pool
 
 global word_found
 word_found = False
@@ -28,23 +23,32 @@ def main():
         else:
             global word_found
             if word_found:
-                #check_word_thread.join()
-                play_beep()
-                recorded_audio_path = new_record_audio()
-                play_beep()
-                transcript = ""
-                vad_filter = config["recording_settings"]["wake_settings"]["vad_filter"]
-                transcript = transcribe_audio(recorded_audio_path, ai_model=config["models"]["stt_models"]["main_model"], vad=vad_filter)
-                if str(transcript) != "":
-                    start_time = time.time()
-                    output = input_message(transcript)
-                    print("Chatbot time: {0}".format(time.time() - start_time))
-                    print(output)
-                    say_text(output, config["file_paths"]["output_file"])
-                    word_found = False
+                word_found_fn()
             else:
-                path = record_word()
-                word_found = check_for_word(path)
+                word_not_found()
+                
+
+def word_found_fn():
+    global word_found
+    play_beep()
+    recorded_audio_path = new_record_audio()
+    play_beep()
+    transcript = ""
+    vad_filter = config["recording_settings"]["wake_settings"]["vad_filter"]
+    transcript = transcribe_audio(recorded_audio_path, ai_model=config["models"]["stt_models"]["main_model"], vad=vad_filter)
+    if str(transcript) != "":
+        start_time = time.time()
+        output = input_message(transcript)
+        print("Chatbot time: {0}".format(time.time() - start_time))
+        print(output)
+        say_text(output, config["file_paths"]["output_file"])
+        word_found = False
+
+def word_not_found():
+    global word_found
+    path = record_word()
+    word_found = check_for_word(path)
+
 
 if __name__ == "__main__":
     main()
